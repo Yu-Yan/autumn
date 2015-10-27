@@ -1,0 +1,10 @@
+name: autumn
+version: 2
+
+libraries:
+- name: "django"
+  version: "1.8.3"
+
+handlers:
+- url: /static
+  static_dir: ./

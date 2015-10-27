@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container" style="font-size:140%;">
+        <ul class="nav nav-tabs">
+        <li class="#" id="home"><a href="{% url 'index' %}">Autumn - Home</a></li>
+        <li class="pull-right"><a href="{% url 'about' %}">About</a></li>
+        <li class="pull-right" id="signin"><a href="{% url 'logout_view' %}">Logout</a></li>
+        <li class="pull-right"><a href="{% url 'author' author_au.id %}">My blog</a></li>
+        </ul>
+    </div>
+
+<div class="container">
+    <div style="margin-left:20px;">
+
+      <div class="blog-header" style="margin-top:40px;">
+        <h1 class="blog-title">Top articles</h1>
+        <p class="lead blog-description">most liked articles in the past week.</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+         
+          {% for blog in blog_list %}
+              <div class="blog-post">
+                  <h4 class="text-primary"><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h4>
+                  <p class="blog-post-meta">{{ blog.pub_date|date:"d M Y" }} by <a href="{% url 'author' blog.author.id %}">{{ blog.author.name }}</a></p>
+                  <text>{{ blog.content|truncatechars:100 }}</text>
+                  <hr/>
+              </div>
+          {% endfor %}
+
+
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Delicious autumn! My very soul is wedded to it.</p>
+          </div>
+          <br/><br/>
+          <div class="sidebar-module">
+            <h4>Top authors</h4>
+            <ol class="list-unstyled">
+              {% for author in authors %}
+              <li><a href="{% url 'author' author.id %}">{{ author.name }}</a></li>
+              {% endfor %}
+            </ol>
+          </div>
+          <br/><br/>
+          
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+      </div>
+    </div><!-- /.container -->
+
+{% endblock %}

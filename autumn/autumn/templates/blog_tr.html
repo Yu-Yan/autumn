@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% load bootstrap %}
+    <div class="container">
+      <div class="container" style="font-size:140%;">
+        <ul class="nav nav-tabs">
+          <li class="#" id="home"><a href="{% url 'index' %}">Autumn</a></li>
+          <li class="pull-right"><a href="{% url 'about' %}">About</a></li>
+          <li class="pull-right"><a href="{% url 'register' %}">Sign up</a></li>
+          <li class="pull-right"><a href="{% url 'login' %}">Log in</a></li>
+        </ul>
+    </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+              <div class="panel panel-info" style="margin-top:50px; margin-left:40px;">
+                <div class="panel-heading">
+                  <h4>{{ blog.title }}</h4>
+                  <p class="text-muted">{{ blog.pub_date }} by <span class="text-primary"><a href="{% url 'author' author.id %}">{{ author.name }}</a></span></p>
+                </div>
+                <div class="panel-body" style="height:auto; min-height:600px;">
+                  <pre><p style="font-size:120%;">{{ blog.sub_title }}</p>{{ blog.content }}</pre>
+                </div>
+              </div>
+                <div class="btn-group">
+                   <button type="button" class="btn btn-default" style="margin-left:40px;"><span class="glyphicon glyphicon-tags"></span> Tags:</button>
+                    <a type="button" class="btn btn-default text-muted">...</a>
+                    <a type="button" class="btn btn-default text-muted">...</a>
+                </div>
+              <hr style="margin-left:40px;"/>
+              <div class="panel panel-default" style="margin-top:50px; margin-left:40px;">
+                <div class="panel-heading">Comments:</div>
+                <div class="panel-body">
+                <form role="form" class="form ajax" action="{% url 'comment' %}" method="post">
+                  <div class="form-group">
+                    <input class="form-control" type="text" id='comment_id' name="comment_content" placeholder="Login first to give comments"/><br/>
+                    <a class="btn btn-default disabled" type="submit" id="addbutton" name="addbutton">Commit</a>
+                    <hr/>
+                  </div>
+                </form>
+                {% if comments|length %}
+                  {% for comment in comments %}
+                  <p class="text-primary"><a href="{% url 'author' comment.author.id %}">{{ comment.author.name }}</a>:</p>
+                  <p>{{ comment.content }}</p><hr/>
+                  {% endfor %}
+                {% endif %}
+                {% if not comments %}
+                  <p>No comment yet!</p>
+                {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4" style="margin-top:50px;">
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style="margin-top:40px;">
+                  <h5>Author Information:</h5><hr/>
+                  <p><span class="glyphicon glyphicon-user"></span> <a class="text-info" href="{% url 'author' author.id %}">{{ author.name }}</a></p>
+                  <p><span class="glyphicon glyphicon-envelope"></span> {{ author.user.email }}</p>
+                  <br/>
+                  <p>The author said:</p><p>{{ author.sig }}</p>
+                  <br/><br/>
+                  <br/>
+                  
+                  <h5>Other posts of {{ author.name }}:</h5><hr/>
+                  {% if blogs_au|length %}
+                  <ul>
+                    {% for blog in blogs_au %}
+                    <li><a href"{% url 'blog' blog.id %}">{{ blog.title|truncatechars:38 }}</a></li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  
+                  {% if not blogs_au|length %}
+                    <p>No more blogs</p>
+                  {% endif %}
+
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+
+  </body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% load bootstrap %}
+    <div class="container">
+      <div class="container" style="font-size:140%;">
+        <ul class="nav nav-tabs">
+          <li class="#" id="home"><a href="{% url 'index' %}">Autumn</a></li>
+          <li class="pull-right"><a href="{% url 'about' %}">About</a></li>
+          <li class="pull-right"><a href="{% url 'logout_view' %}">Logout</a></li>
+          <li class="pull-right"><a href="{% url 'author' author_au.id %}">My blog</a></li>
+        </ul>
+    </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+               <div class="panel panel-info" style="margin-top:50px; margin-left:40px; height:auto; min-height:400px;">
+                <div class="panel-heading">
+                  <h4>Blogs of {{ author.name }}</h4>
+
+                </div>
+                <div class="panel-body">
+                {% if blogs|length %}
+                  <ul class="list-group">
+                    {% for blog in blogs %}
+                        <li class="list-group-item"><a href="{% url 'blog' blog.id %}">{{ blog.title|truncatechars:80 }}</a><span class="pull-right text-primary">{{ blog.pub_date }}</span></li>   
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                {% if not blogs|length %}
+                    <div class="text-warning" style="margin-top:20px; font-size:140%;">
+                      <p>No blog yet..</p>
+                    </div>
+                {% endif %}
+                </div>
+              </div>
+              <hr style="margin-left:40px;"/>
+            </div>
+            <div class="col-lg-4" style="margin-top:50px;">
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style="margin-top:40px;">
+                  <h5>Author Information:</h5><hr/>
+                  <p><span class="glyphicon glyphicon-user"></span> <a class="text-info" href="{% url 'author' author.id %}">{{ author.name }}</a></p>
+                  <p><span class="glyphicon glyphicon-envelope"></span> {{ author.user.email }}</p>
+                  <br/>
+                  <p>The author said:</p><p>{{ author.sig }}</p>
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+            </div>
+        </div>
+        <p>{{ i }}</p>
+    </div> <!-- /container -->
+
+
+  </body>
+</html>
+
+
+{% endblock %}

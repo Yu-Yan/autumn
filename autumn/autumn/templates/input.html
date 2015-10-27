@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% load bootstrap %}
+    <div class="container">
+      <div class="container" style="font-size:140%;">
+        <ul class="nav nav-tabs">
+          <li class="#" id="home"><a href="{% url 'index' %}">Autumn</a></li>
+          <li class="pull-right"><a href="{% url 'about' %}">About</a></li>
+          <li class="pull-right"><a href="{% url 'logout_view' %}">Logout</a></li>
+          <li class="pull-right"><a href="{% url 'author' author_au.id %}">My blog</a></li>
+        </ul>
+    </div>
+
+        <div class="row" style="margin-top:40px;margin-bottom:20px;">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+
+            <h3 class="#">Post blog:</h3><hr/>
+            <form role="form" method='POST' class="form">
+                {% csrf_token %}
+                {{ form|bootstrap}}
+                <hr/>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success">Post</button>
+                </div>
+            </form>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div> <!-- /container -->
+
+
+  </body>
+</html>
+
+
+{% endblock %}

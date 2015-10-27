@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://mnautu.sinaapp.com./staticfiles/favion.ico">
+
+    <title>Autumn</title>
+
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body>
+
+
+
+<div class="container" style="font-size:140%;">
+    <ul class="nav nav-tabs">
+    <li class="#" id="home"><a href="{% url 'index' %}">Autumn</a></li>
+    <li class="pull-right"><a href="{% url 'about' %}">About</a></li>
+    <li class="pull-right"><a href="{% url 'register' %}">Sign up</a></li>
+    <li class="pull-right"><a href="{% url 'login' %}">Log in</a></li>
+    </ul>
+</div>
+
+<div class="container">
+  <div class="text-warning" style="margin-left:40px; margin-top:50px;">
+    <h3>Welcome to Autumn.</h3>
+    <br/>
+    <div class="row">
+      <div class="col-md-8">
+        <blockquote>“Autumn is a second spring when every leaf is a flower.” <small>Albert Camus</small></blockquote>
+        <blockquote>“It looked like the world was covered in a cobbler crust of brown sugar and cinnamon.” <small>Sarah Addison Allen</small></blockquote>
+        <blockquote>“I'm so glad I live in a world where there are Octobers.” <small>L.M. Montgomery</small></blockquote>
+        <blockquote>“I was just telling Claire about a guy I met in bread class. I hate him, but he could be my soul mate.” <small>Sarah Addison Allen</small></blockquote>
+        <blockquote>“Autumn...the year's last, loveliest smile."<small>William Cullen Bryant</small></blockquote>
+        <blockquote>“Love the trees until their leaves fall off, then encourage them to try again next year.” <small>Chad Sugg</small></blockquote>
+      </div>
+      <div class="col-md-4">
+      <!--<img class="img-responsive img-rounded" src="staticfiles/sss.jpg"/>-->
+      <img class="img-responsive img-rounded" src="http://mnautu.sinaapp.com./staticfiles/sss.jpg"/>
+      </div>
+    </div>
+    <p>Autumn is is one of the four temperate seasons. Here autumn is an elegant blog website on which you could <a href="{% url 'register' %}" class="text-danger" style="font-size:150%; font-weight:bold;"><i>start your personal blog</i></a> freely. Login to read blogs of others.</p>
+  </div>
+</div><!-- /.container -->
+
+
+    <div class="container">
+    <hr/><br/><br/>
+
+      <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> and <a href="https://www.djangoproject.com/">Django</a>. Feel free to start your personal blog here.</p>
+      <p>Contact info: <a href="mailto:an_guan@outlook.com">an_guan@outlook.com</a>.</p>
+    <br/><br/><br/><br/>
+    </div>
+
+  </body>
+</html>
